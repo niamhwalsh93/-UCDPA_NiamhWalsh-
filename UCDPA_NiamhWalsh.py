@@ -185,3 +185,43 @@ plt.savefig("Pie Chart - Percentage of time spent with each NBA team over the co
 #Display the plot
 plt.show()
 
+#Sort the dataframe by ascending values on the BMI column
+NBA_Players_index_sorted = NBA_Players_index.sort_values(by="BMI", ascending=False)
+
+#Print the dataframe
+print(NBA_Players_index_sorted)
+
+#Create a Bar Plot and customise accordingly
+#Create figure & axes
+ax = NBA_Players_index_sorted.head(10)["BMI"].plot(kind='bar', title ="Top 10 BMI per players",figsize=(15,10),legend=True, fontsize=12, rot=20)
+ax.set_xlabel("Player Names",fontsize=12)
+ax.set_ylabel("BMI",fontsize=12)
+
+#Save the plot
+plt.savefig("Bar Chart - Top 10 BMI per players.jpg")
+
+#Display the plot
+plt.show()
+
+#Create figure & axes
+fig, ax = plt.subplots(figsize=(20, 6))
+
+#Create a histogram based on BMI columns and specify bin levels to 15,20,25,30
+
+ax.hist(NBA_Players_index["BMI"], label="BMI",
+        bins=[15, 20, 25, 30], color="yellow")
+
+
+#Set x and y axis lables
+ax.set_ylabel("# of Observations")
+ax.set_xlabel("BMI")
+
+#Set Title
+ax.set_title("Number of Observation per Histogram Bin")
+
+#Save the plot
+plt.savefig("Histogram - Number of Observation per Histogram Bin.jpg")
+
+#Display the plot
+plt.show()
+
