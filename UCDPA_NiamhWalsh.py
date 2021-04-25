@@ -157,3 +157,31 @@ plt.savefig("Line Plot - Points Scored Across all Seasons played.jpg")
 #Display the plot
 plt.show()
 
+#Groupby team abbreviation and count the number of seasons played per team
+print(LAM.groupby("team_abbreviation")["season"].count())
+
+#Create a nump array
+y = np.array([1, 5, 7, 1])
+
+#Create variables of lists to define lables/colors/explode
+mylabels = ["DAL", "LAC", "LAL", "MIA"]
+mycolors = ["c", "m", "g", "y"]
+myexplode = [0, 0, 0.2, 0]
+
+#Create a pie chart and customise using the variables defined above
+plt.pie(y, labels = mylabels, colors = mycolors, explode = myexplode, autopct='%1.1f%%', shadow=True)
+
+#Add a legend to the plot
+plt.legend(title = "Team Abbreviations:",
+           loc="center left",
+           bbox_to_anchor=(1, 0, 0.5, 1))
+
+#Add a title to the plot
+plt.title("Lamar Odom - Percentage of time spent with each NBA team over the course of NBA career")
+
+#Save the plot
+plt.savefig("Pie Chart - Percentage of time spent with each NBA team over the course of NBA career.jpg")
+
+#Display the plot
+plt.show()
+
