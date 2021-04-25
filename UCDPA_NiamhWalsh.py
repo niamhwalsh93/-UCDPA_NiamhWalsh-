@@ -137,4 +137,23 @@ LAM_index = LAM.set_index("season").sort_index(ascending=True)
 #Print dataframe
 print(LAM_index)
 
+#Create figure & axes
+fig, ax = plt.subplots(figsize=(20, 6))
+
+#Plotting a line chart and customising
+ax.plot(LAM_index["pts"], marker="o",linestyle="-",color="b")
+
+#Setting and cutomising plot lables and titles
+ax.set_xlabel("Season")
+ax.set_ylabel("Points Scored")
+ax.set_title("Points Scored Across all Seasons played")
+
+ax.annotate('Max Points Scored', xy=("2000-01", 17), xytext=("2000-01", 15),
+            arrowprops=dict(facecolor='black', shrink=0.01))
+
+#Save the plot
+plt.savefig("Line Plot - Points Scored Across all Seasons played.jpg")
+
+#Display the plot
+plt.show()
 
