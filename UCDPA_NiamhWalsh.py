@@ -67,3 +67,38 @@ print(NBA.isna().sum())
 
 #Replace NA values with 0
 NBA.fillna(0)
+
+#Create a varialbe NBA_filtering and filter the dataframe to return all rows and specified number of columns by name
+NBA_filtering = NBA.loc[ : , ["player_name", "team_abbreviation", "player_height", "player_weight", "pts", "season"]]
+
+#Create a varialbe NBA_filtered and access all rows where the season is equal to 2019-20
+NBA_filtered = NBA_filtering.loc[NBA_filtering["season"]== "2019-20"]
+
+#Create a varialbe NBA_Players_index and set the index to be player name and sorting by ascending values
+NBA_Players_index = NBA_filtered.set_index("player_name").sort_index(ascending=True)
+
+#Print the head of the dataframe to get the first five lines
+print(NBA_Players_index.head())
+
+#Create a new column in the dataframe called BMI by multiplying player height column by player weight and divide by 1000
+NBA_Players_index["BMI"] = (NBA_Players_index["player_height"] * NBA_Players_index["player_weight"])/1000
+
+#Print the head of the dataframe to get the first five lines
+print(NBA_Players_index.head())
+
+#Use iterrows and looping to create a new column ”result” based on information in “BMI” column
+for index, row in NBA_Players_index.iterrows():
+    print(f'Index: {index}, BMI: {row.get("BMI", 0)}')
+result = []
+for value in NBA_Players_index["BMI"]:
+    if value >= 25:
+            result.append("Above Average")
+    elif value < 25 and value > 24:
+            result.append("Average")
+    else:
+            result.append("Below Average")
+NBA_Players_index["Result"] = result
+
+#Print dataframe
+print(NBA_Players_index)
+
