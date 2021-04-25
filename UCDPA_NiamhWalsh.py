@@ -258,3 +258,51 @@ Stroke_Index = Stroke_cleaned.set_index("age").sort_index()
 #Print the dataframe
 print(Stroke_Index)
 
+#Setting order of hue
+hue_order = ["Unknown", "never smoked", "formerly smoked", "smokes"]
+
+#Cusomtise color palette
+custom_palette = ["red", "orange", "yellow", "green"]
+
+#Set context to talk
+sns.set_context("talk")
+
+#Set style to seaborns default
+sns.set()
+
+#Set the palette to equal the customised palette set above
+sns.set_palette(custom_palette)
+
+#Create a countplot setting x axis equal to smoking status, use the stroke index dataframe and use hue and order variables
+sns.countplot(x="smoking_status",
+            data=Stroke_Index,
+              hue="smoking_status",
+              order=hue_order)
+
+#Set a chart title
+plt.title("Smoking Status per Category")
+
+#Save the plot
+plt.savefig("CountPlot - Smoking Status per Category.jpg")
+
+#Display the plot
+plt.show()
+
+
+#Create a catplot setting x axis equal to gender, use the stroke index dataframe and set the kind to count
+sns.catplot(x="gender",
+            data=Stroke_Index,
+              kind="count")
+
+#Set style to seaborns default
+sns.set()
+
+#Set a chart title
+plt.title("Male and Female Gender breakdown per sample taken")
+
+#Save the plot
+plt.savefig("CatPlot - Male and Female Gender breakdown per sample taken.jpg")
+
+#Display the plot
+plt.show()
+
