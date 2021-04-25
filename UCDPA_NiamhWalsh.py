@@ -41,3 +41,29 @@ print(len(df))
 #Print the head of the dataframe to get the first five lines
 print(df.head())
 
+#Import csv file and create a pandas dataframe using the variable NBA
+NBA = pd.read_csv("all_seasons.csv")
+
+#Expand dataframe to show all columns
+pd.set_option('display.expand_frame_repr', False)
+
+#Print the head of the dataframe to get the first five lines
+print(NBA.head())
+
+#Print the shape of the dataframe to get number of rows and columns
+print(NBA.shape)
+
+#Display column names
+print(NBA.columns)
+
+#Print dataframe index
+print(NBA.index)
+
+#Checking for null values within the dataframe
+print(NBA.isna())
+
+#Count the number of NA values per column
+print(NBA.isna().sum())
+
+#Replace NA values with 0
+NBA.fillna(0)
