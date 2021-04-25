@@ -102,3 +102,18 @@ NBA_Players_index["Result"] = result
 #Print dataframe
 print(NBA_Players_index)
 
+#Define a function & print the 50th percentile of the BMI column
+def pct50(column):
+    return column.quantile(0.5)
+print(NBA_Players_index["BMI"].agg(pct50))
+def pct50(column):
+    return column.quantile(0.5)
+
+#Define a function & print the 25th percentile of the BMI column
+def pct25(column):
+    return column.quantile(0.25)
+print(NBA_Players_index["BMI"].agg(pct25))
+def pct50(column):
+    return column.quantile(0.25)
+
+
