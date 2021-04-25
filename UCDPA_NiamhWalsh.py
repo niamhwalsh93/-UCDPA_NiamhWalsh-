@@ -225,3 +225,36 @@ plt.savefig("Histogram - Number of Observation per Histogram Bin.jpg")
 #Display the plot
 plt.show()
 
+#Import csv file and create a pandas dataframe using the variable Stroke
+Stroke = pd.read_csv("healthcare-dataset-stroke-data.csv")
+
+#Expand dataframe to show all columns
+pd.set_option('display.expand_frame_repr', False)
+
+#Display column names for the data frame
+print(Stroke.columns)
+
+#Count the number of NA values per column
+print(Stroke.isna().sum())
+
+#Create a new variable Stroke_removena and set this to Remove all rows with NA values
+Stroke_removena = Stroke.dropna()
+
+#Count the number of NA values per column
+print(Stroke_removena.isna().sum())
+
+#Print the shape of the dataframe to get the number of columns and rows
+print(Stroke_removena.shape)
+
+#Create a new variable Stroke_cleaned and set this to drop all columns with the specified names below
+Stroke_cleaned = Stroke_removena.drop(columns=["hypertension", "heart_disease", "ever_married", "Residence_type"])
+
+#Print the shape of the dataframe to get the number of columns and rows
+print(Stroke_cleaned.shape)
+
+#Create a new variable Stroke_Index and set the index equal to age and sort
+Stroke_Index = Stroke_cleaned.set_index("age").sort_index()
+
+#Print the dataframe
+print(Stroke_Index)
+
