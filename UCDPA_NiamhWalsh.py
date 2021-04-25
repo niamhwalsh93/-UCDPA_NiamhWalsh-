@@ -306,3 +306,58 @@ plt.savefig("CatPlot - Male and Female Gender breakdown per sample taken.jpg")
 #Display the plot
 plt.show()
 
+#Import csv file and create a pandas dataframe using the variables items and reviews
+Items = pd.read_csv("20191226-items.csv")
+Reviews = pd.read_csv("20191226-reviews.csv")
+
+#Expand dataframe to show all colujmns
+pd.set_option('display.expand_frame_repr', False)
+
+#Display column names for each data frame
+print(Items.columns)
+print(Reviews.columns)
+
+#Display top 5 rows of the dataframes
+print(Items.head())
+print(Reviews.head())
+
+#Display the shape of the dataframes to get rows and columns
+print(Items.shape)
+print(Reviews.shape)
+
+#Merge the two dataframes using an inner join and store as Merged
+Merged = Items.merge(Reviews, on='asin', validate='one_to_many')
+
+#Print dataframe
+print(Merged)
+
+#Display the shape of the dataframes to get rows and columns after the merge
+print(Merged.shape)
+
+#Drop all rows with NA values
+result = Merged.dropna()
+
+#Print the dataframe
+print(result)
+
+#Display the shape of the dataframes to get rows and columns
+print(result.shape)
+
+#Create a new variable results_ind and set the index equal to asin
+results_ind = result.set_index("asin")
+
+#Print dataframe
+print(results_ind)
+
+#Create a variable for the brand column called Brand_column
+Brand_column = results_ind["brand"]
+
+#Access the unique values for brand by using the variable Brand
+brand = results_ind["brand"].unique()
+
+#Print the dataframe
+print(brand)
+
+#Print the the number of reviews per brand using the count function
+print(results_ind["brand"].value_counts())
+
