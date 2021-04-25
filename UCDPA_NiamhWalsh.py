@@ -116,4 +116,25 @@ print(NBA_Players_index["BMI"].agg(pct25))
 def pct50(column):
     return column.quantile(0.25)
 
+#Create a new variable Team_MMS and use groupby to to get the min max of players height and weight for each team
+Team_MMS = NBA_Players_index.groupby("team_abbreviation")[["player_height","player_weight"]].agg([min, max])
+
+#Print dataframe
+print(Team_MMS)
+
+#Create a new variable Mean and use groupby to to get the mean of players height and weight for each team
+Mean = NBA_Players_index.groupby("team_abbreviation")[["player_height","player_weight"]].mean()
+
+#Print dataframe
+print(Mean)
+
+#Create a variable LAM and access all rows where player name is Lamar Odom
+LAM = NBA_filtering.loc[NBA_filtering["player_name"]== "Lamar Odom"]
+
+#Create a variable LAM_index and set index to player name and sort by ascending values
+LAM_index = LAM.set_index("season").sort_index(ascending=True)
+
+#Print dataframe
+print(LAM_index)
+
 
